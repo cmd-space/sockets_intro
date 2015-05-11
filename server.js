@@ -20,4 +20,8 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket){
     console.log('we are using sockets!');
     console.log(socket.id);
+    socket.on('button_clicked', function(data){
+        console.log('Someone clicked a button! Reason: ' + data.reason);
+        socket.emit('server_response', {response: 'sockets are the best!'});
+    });
 });
